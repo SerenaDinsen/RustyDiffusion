@@ -1837,7 +1837,6 @@ name = "sdrustgui"
 version = "0.1.0"
 dependencies = [
  "eframe",
- "log",
 ]
 
 [[package]]
