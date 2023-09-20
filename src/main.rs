@@ -1,4 +1,6 @@
 use eframe::egui;
+use std::fs::File;
+use std::io::prelude::*;
 
 fn main() {
     let native_options = eframe::NativeOptions::default();
@@ -21,7 +23,19 @@ impl RustyDiffusion {
 impl eframe::App for RustyDiffusion {
    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
        egui::CentralPanel::default().show(ctx, |ui| {
-           ui.heading("Welcome to RustyDiffusion");
+            ui.heading("Welcome to RustyDiffusion");
+            ui.separator();
+
+            if ui.button("Click me bitch").clicked() {
+                writefile();
+            }
        });
    }
 }
+
+fn writefile() -> std::io::Result<()> {
+    let mut file = File::create("foo.txt")?;
+    file.write_all(b"Hello, world!")?;
+    Ok(())
+}
+
